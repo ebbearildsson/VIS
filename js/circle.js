@@ -13,7 +13,7 @@ function setup() {
     getCircles(edge, circles)
     sliderSpeed = createSlider(0, 0.3, 0.01, 0.002)
     sliderSpeed.position(10, 10)
-    sliderVertex = createSlider(2, 40, 2, 1)
+    sliderVertex = createSlider(2, 40, 3, 1)
     sliderVertex.position(10, 30)
 }
 
@@ -57,7 +57,7 @@ function draw() {
         strokeWeight(0.1)
         translate(width / 2, height / 2)
         stroke(255)
-        //line(cos(ball.a) * r, sin(ball.a) * r, cos(ball.a) * -r, sin(ball.a) * -r)
+        line(cos(ball.a) * r, sin(ball.a) * r, cos(ball.a) * -r, sin(ball.a) * -r)
         colorMode(HSB)
         let color = map(abs(sin(count * speed - ball.wait)), 0, 1, 0, 255)
         stroke(color, 255, 255)

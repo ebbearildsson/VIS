@@ -6,7 +6,7 @@ let sliderA
 function setup() {
     createCanvas(innerWidth, innerHeight)
     angleMode(DEGREES)
-
+    translate(width / 2, height)
     sliderA = createSlider(0, 360, 180, 1)
     sliderA.position(10, 20)
     sliderD = createSlider(10, 300, 30, 10)
@@ -17,14 +17,14 @@ function getBranches(len) {
     if (len === depth) {
         push()
         stroke(50, 100 - len, 0)
-        strokeWeight(40)
-        line(0, 0, 0, -depth)
+        strokeWeight(30)
+        line(0, 0, 0, -len)
         pop()
-        translate(0, -depth)
+        translate(0, -len)
     }
     if (len > 10) {
         stroke(50, 100 - len, 0)
-        strokeWeight(map(len, 100, 0, 30, 0))
+        strokeWeight(map(len, 100, 0, 20, 0))
 
         push()
         rotate(angle)
