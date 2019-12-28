@@ -1,16 +1,17 @@
-let angle = 60
-let depth = 100
+let angle = 180
+let depth = 30
 let sliderD
 let sliderA
 
 function setup() {
     createCanvas(innerWidth, innerHeight)
     angleMode(DEGREES)
-    translate(width / 2, height)
     sliderA = createSlider(0, 360, 180, 1)
     sliderA.position(10, 20)
     sliderD = createSlider(10, 300, 30, 10)
     sliderD.position(10, 60)
+    translate(width / 2, height)
+    getBranches(depth)
 }
 
 function getBranches(len) {
