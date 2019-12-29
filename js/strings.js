@@ -19,7 +19,7 @@ function setup(){
     sliderA = createSlider(10, 1000, 200, 10)
     checkW = createCheckbox('Web', true)
     checkM = createCheckbox('Monochromatic', false)
-    checkP = createCheckbox('Pause', false)
+    checkP = createCheckbox('Pause', true)
 
     checkW.changed(checkWEvent)
     checkM.changed(checkMEvent)
@@ -44,9 +44,8 @@ function checkMEvent(){
     background(0)
 }
 
-function checkPEvent(){
-    paused = !paused
-}
+checkPEvent = () => paused = !paused
+
 
 function getCircles(){
     circles = []
