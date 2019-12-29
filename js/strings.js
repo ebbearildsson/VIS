@@ -1,15 +1,18 @@
 let circles = []
+
 let speed = 0.8
 let amount = 200
 let size = 150
+
 let sliderA
 let sliderS
 let checkW
 let checkM
 let checkP
+
 let web = true
 let mono = false
-let paused = false
+let paused = true
 
 function setup(){
     createCanvas(innerWidth, innerHeight)
@@ -45,7 +48,6 @@ function checkMEvent(){
 }
 
 checkPEvent = () => paused = !paused
-
 
 function getCircles(){
     circles = []
