@@ -23,7 +23,7 @@ function getCircles(amount, list) {
 }
 
 function draw() {
-    background(37)
+    background(0)
     stroke(255)
     noFill()
     ellipse(width / 2, height / 2, 2 * r)

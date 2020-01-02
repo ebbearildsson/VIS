@@ -5,6 +5,7 @@ let sliderA
 
 function setup() {
     createCanvas(innerWidth, innerHeight)
+    background(0)
     angleMode(DEGREES)
     sliderA = createSlider(0, 360, 180, 1)
     sliderA.position(10, 20)
@@ -47,12 +48,12 @@ function draw() {
     push()
     translate(width / 2, height)
     if (sliderA.value() !== angle) {
-        background(240)
+        background(0)
         angle = sliderA.value()
         getBranches(depth)
     }
     if (sliderD.value() !== depth) {
-        background(240)
+        background(0)
         depth = sliderD.value()
         getBranches(depth)
     }

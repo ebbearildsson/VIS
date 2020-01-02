@@ -5,7 +5,7 @@ function setup(){
     createCanvas(innerWidth, innerHeight)
     sliderL = createSlider(0, 10, 1, 1)
     sliderL.position(10, 30)
-    background(37)
+    background(0)
     noStroke()
 }
 
@@ -41,7 +41,7 @@ function createTriangle(r){
 
 function draw(){
     if(sliderL.value() !== levels) {
-        background(37)
+        background(0)
         levels = sliderL.value()
         push()
         translate(width*0.35, height*0.5)
