@@ -1,43 +1,74 @@
 let walls = []
 let clickedOnce = false
-let tempWall, person
-let amount = 200
+let tempWall, person, sliderA, sliderS, sliderR, sliderL
+let amount = 20
+let angle = 0
+let sight = 400
+let start = 0
 
 function setup(){
     createCanvas(innerWidth, innerHeight)
-
-    walls.push(new Wall(0, 0, width, 0))
-    walls.push(new Wall(0, 0, 0, height))
-    walls.push(new Wall(width, 0, width, height))
-    walls.push(new Wall(0, height, width, height))
-    //walls.push(new Wall(0, 400, 400, 0))
-
+    sliderA = createSlider(0, TWO_PI, TWO_PI, 0.01)
+    sliderA.position(10, 10)
+    sliderS = createSlider(0, TWO_PI, 0, 0.01)
+    sliderS.position(10, 30)
+    sliderL = createSlider(0, 1000, 400, 10)
+    sliderL.position(10, 50)
+    sliderR = createSlider(0, 500, 20, 1)
+    sliderR.position(10, 70)
+    walls.push(new Wall(0, 0, 0, 0))
     person = new Person(width/2, height/2)
-    person.addRays(amount)
-    person.moveRays(walls)
 }
 
 function mouseClicked(){
-    if(!clickedOnce){
-        tempWall = new Wall(mouseX, mouseY, mouseX, mouseY)
-        clickedOnce = !clickedOnce
-    } else {
-        walls.push(tempWall)
-        tempWall = new Wall(0,0,0,0)
-        clickedOnce = !clickedOnce
-        person.moveRays(walls)
+    if(keyIsDown(SHIFT)){
+        person.x = mouseX
+        person.y = mouseY
+        person.addRays()
+    }
+    else if(!(mouseX < 250 && mouseY < 100)){
+        if(!clickedOnce){
+            tempWall = new Wall(mouseX, mouseY, mouseX, mouseY)
+            clickedOnce = !clickedOnce
+        } else {
+            walls.push(tempWall)
+            tempWall = new Wall(0,0,0,0)
+            clickedOnce = !clickedOnce
+            person.addRays()
+        }
     }
 }
 
 function draw(){
     background(0)
-
+    if(keyIsDown(87)){
+        person.y -= 10
+        person.addRays()
+    } 
+    if(keyIsDown(83)){
+        person.y += 10
+        person.addRays()
+    }
+    if(keyIsDown(65)){
+        person.x -= 10
+        person.addRays()
+    } 
+    if(keyIsDown(68)){
+        person.x += 10
+        person.addRays()
+    }
+    if(sliderS.value() !== start || sliderA.value() !== angle || sliderL.value() !== sight || sliderR.value() !== amount){
+        angle = sliderA.value()
+        start = sliderS.value()
+        amount = sliderR.value()
+        sight = sliderL.value() 
+        person.addRays(amount, angle)
+    }
     if(clickedOnce){
         tempWall.b = createVector(mouseX, mouseY)
         tempWall.draw()
     }
     walls.forEach(wall => wall.draw())
-
     person.draw()
 }
 
@@ -45,8 +76,6 @@ class Wall{
     constructor(x1, y1, x2, y2){
         this.a = createVector(x1, y1)
         this.b = createVector(x2, y2)
-        this.k = (y1 - y2) / (x1 - x2)
-        this.m = y1 - this.k * x1
     }
 
     draw(){
@@ -64,21 +93,22 @@ class Person{
         this.rays = []
     }
 
-    addRays(amount){
-        let a = TWO_PI / amount
+    addRays(){
+        this.rays = []
+        let a = angle / amount
         for(let i = 0; i < amount; i++){
-            this.rays.push(new Ray(this.x, this.y, a * i))
+            this.rays.push(new Ray(this.x, this.y, a * i + start))
         }
-    }
-
-    moveRays(walls){
-        this.rays.forEach(ray => ray.move(walls))
+        this.rays.forEach(ray => ray.move())
     }
 
     draw(){
         push()
-        stroke(255)
+        fill(100)
         ellipse(this.x, this.y, 10)
+        beginShape()
+        this.rays.forEach(ray => vertex(ray.b.x, ray.b.y))
+        endShape()
         this.rays.forEach(ray => ray.draw())
         pop()
     }
@@ -92,25 +122,25 @@ class Ray{
         this.hit = false
     }
 
-    move(walls){
+    move(){
         this.b = createVector(this.a.x, this.a.y)
         this.hit = false
+
         while(!this.hit){
-            this.b.x += cos(this.angle)
-            this.b.y += sin(this.angle)
-            walls.forEach(w => {           
-                if(dist(this.b.x, this.b.y, w.a.x, w.a.y) + dist(this.b.x, this.b.y, w.b.x, w.b.y) <= dist(w.b.x, w.b.y, w.a.x, w.a.y) + 0.1 &&
-                   dist(this.b.x, this.b.y, w.a.x, w.a.y) + dist(this.b.x, this.b.y, w.b.x, w.b.y) >= dist(w.b.x, w.b.y, w.a.x, w.a.y) - 0.1){
+            this.b.x += cos(this.angle) 
+            this.b.y += sin(this.angle) 
+            walls.forEach(w => {  
+                let close = dist(w.b.x, w.b.y, w.a.x, w.a.y) - (dist(this.b.x, this.b.y, w.a.x, w.a.y) + dist(this.b.x, this.b.y, w.b.x, w.b.y))
+                if((close < 0.15 && close > -0.15 || dist(this.b.x, this.b.y, this.a.x, this.a.y) >= sight)){
                     this.hit = true
-                }         
-               //if(this.b.x * w.k + w.m >= this.y + 10 && this.b.x * w.k + w.m <= this.y - 10) this.hit = true
+                }   
             })
         }
     }
 
     draw(){
         push()
-        stroke(100)
+        stroke(255)
         line(this.a.x, this.a.y, this.b.x, this.b.y)
         pop()
     }
