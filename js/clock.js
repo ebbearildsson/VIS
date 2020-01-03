@@ -54,8 +54,11 @@ function draw(){
     //Text
 
     push()
-    rotate(PI)
-    fill(255)
+    textAlign(CENTER)
+    textSize(height*0.4)
+    translate(width*0.2, height/2)
+    rotate(PI*2-HALF_PI)
+    fill(252)
     text(y, 0, 0)
     pop()
 }
