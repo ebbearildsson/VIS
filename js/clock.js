@@ -23,7 +23,7 @@ function draw(){
     d = day()
 
     mapm = map(m, 0, 12, 0, size)
-    mapmd = map(d, 1, 31, 0, mapm)
+    mapmd = map(d, 0, 31, 0, mapm)
 
     fill(239,71,111)
     rect(place, height*0.05, place*0.1, size)
@@ -38,9 +38,9 @@ function draw(){
     m = minute()
     s = second()
 
-    maph = map(h, 0, 23, 0, size)
-    maphm = map(m, 0, 59, 0, maph)
-    maphms = map(s, 0, 59, 0, maphm)
+    maph = map(h, 0, 24, 0, size)
+    maphm = map(m, 0, 60, 0, maph)
+    maphms = map(s, 0, 60, 0, maphm)
 
     fill(239,71,111)
     ellipse(width/2, height/2, size)
