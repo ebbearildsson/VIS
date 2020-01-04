@@ -8,7 +8,7 @@ let g
 
 function setup(){
     createCanvas(innerWidth, innerHeight)
-    background(0)
+    background(7,11,52)
     checkP = createCheckbox('Pause', pause)
     checkP.position(10, 10)
     checkP.changed(checkPchange)
@@ -19,7 +19,7 @@ checkPchange = () => pause = !pause
 
 function draw(){
     if(!pause){
-        background(0)
+        background(7,11,52)
         for(let i = fireworks.length - 1; i >= 0; i--){
             if(fireworks[i].vel.y > 2){
                 let shardAmount = random(5, 20)

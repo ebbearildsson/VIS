@@ -3,6 +3,7 @@ let angle = 90
 let c = 5
 let sliderA, sliderC, checkP
 let paused = true
+let points = []
 
 function setup(){
     createCanvas(innerWidth, innerHeight)
@@ -14,29 +15,30 @@ function setup(){
     checkP.position(10, 50)
     checkP.changed(change)
     angleMode(DEGREES)
-    background(0)
+    background(253, 89, 118)
+    noStroke()
+    fill(255)
 }
 
 change = () => paused = !paused
 
 function draw(){
     if(!paused){
-        fill(255)
+        background(253, 89, 118)
         translate(width/2, height/2)
         rotate(count * 0.1)
         if(angle !== sliderA.value() || c !== sliderC.value()){
             angle = sliderA.value()
             c = sliderC.value()
+            points = []
             count = 0
-            background(0)
         }
-        for(let i = 0; i < count; i++){
-            let a = angle * i
-            let r = c * sqrt(i)
-            let x = r * cos(a)
-            let y = r * sin(a)
-            ellipse(x, y, 4)
-        }
-        count += 5
+        let a = angle * count
+        let r = c * sqrt(count)
+        let x = r * cos(a)
+        let y = r * sin(a)
+        points.push(createVector(x, y))
+        points.forEach(p => ellipse(p.x, p.y, 4))
+        count++
     }
 }
