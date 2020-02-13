@@ -35,13 +35,13 @@ function draw(){
         if(drawing){
             dt = TWO_PI / paintingX.length
             paintingX = paintingX.map(n => map(n, 0, width, 0, 400))
-            paintingY = paintingY.map(n => map(n, 0, height, 0, 400))
+            paintingY = paintingY.map(n => map(n, 0, height, 0, 300))
             paintingX = fTransform(paintingX)
             paintingY = fTransform(paintingY)
         }
 
-        let vx = epiCycles(width / 2, 200, 0, paintingX)
-        let vy = epiCycles(200, height / 2, HALF_PI, paintingY)
+        let vx = epiCycles(width / 2, 100, 0, paintingX)
+        let vy = epiCycles(100, height / 2, HALF_PI, paintingY)
         let v = createVector(vx.x, vy.y) 
         line(vx.x, vx.y, v.x, v.y)
         line(vy.x, vy.y, v.x, v.y)
