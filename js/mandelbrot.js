@@ -27,7 +27,7 @@ function draw(){
         iter = sliderI.value()
         h = w = 0
     }
-    for(let i = 0; i <= width; i++){
+    for(let i = 0; i <= width * 10; i++){
         if(w <= width) w++
         else if(h <= height){
             w = 0
