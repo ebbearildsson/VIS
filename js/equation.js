@@ -1,4 +1,4 @@
-let precision = 0.003
+let precision = 0.001
 let iterations = 1000
 let r = 0
 let x = 0.001
