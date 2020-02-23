@@ -1,7 +1,7 @@
 let a = 0
 let amount = 20
-let size =  30
-let spacing = 5
+let size =  40
+let spacing = 10
 let maxD
 
 function setup(){
