@@ -1,30 +1,33 @@
 let grid = []
 let next = []
-let size = 40
+let size = 10
 let cols, rows
+let animate = false
 
 function setup(){
-    createCanvas(innerHeight, innerHeight)
+    createCanvas(innerWidth, innerHeight)
     cols = f(width) / size
     rows = f(height) / size
     grid = getEmptyGrid()
     next = getEmptyGrid()
-    strokeWeight(0.2)
+    strokeWeight(0.4)
     drawGrid()
 }
 
 f = (value) => { return Math.floor(value / size) * size }
 
+randomize = () => { for(let i = 0; i < cols; i++) for(let j = 0; j < rows; j++) grid[i][j] = floor(random(0, 2)) }
+
 function getEmptyGrid(){
-    let tempGrid = new Array(rows)
-    for(let i = 0; i < tempGrid.length; i++) tempGrid[i] = new Array(cols)
-    for(let i = 0; i < tempGrid.length; i++) for(let j = 0; j < tempGrid[0].length; j++) tempGrid[i][j] = floor(random(0, 2))
+    let tempGrid = new Array(cols)
+    for(let i = 0; i < cols; i++) tempGrid[i] = new Array(rows)
+    for(let i = 0; i < cols; i++) for(let j = 0; j < rows; j++) tempGrid[i][j] = 0
     return tempGrid
 }
 
 function mouseClicked(){
-    let x = round(mouseX / size)
-    let y = round(mouseY / size)
+    let x = round((mouseX - size / 2) / size)
+    let y = round((mouseY - size / 2) / size)
     if(mouseX < width && mouseX > 0 && mouseY < height && mouseY > 0){
         if(grid[x][y] > 0) grid[x][y] = 0
         else grid[x][y] = 1
@@ -34,27 +37,27 @@ function mouseClicked(){
 
 function keyReleased() {
     if (keyCode === ENTER) {
-        for(let y = 0; y < rows; y++) for(let x = 0; x < cols; x++) calcPoint(x, y)
-        grid = next
-        drawGrid()
+        animate = !animate
     } else if(keyCode === ESCAPE) {
-        grid = getEmptyGrid()
+        randomize()
         drawGrid()
     }
 }
 
 function calcPoint(x, y){
-    let points = -grid[x][y]
-    for(let cy = -1; cy < 2; cy++){
-        for(let cx = -1; cx < 2; cx++){
-            let nx = (x + cx + cols) % cols
-            let ny = (y + cy + rows) % rows
-            if(grid[nx][ny] == 1) points++
+    let points = 0
+    for(let cy = -1; cy <= 1; cy++){
+        for(let cx = -1; cx <= 1; cx++){
+            if(!(cx == 0 && cy == 0)){
+                let nx = (x + cx + cols) % cols
+                let ny = (y + cy + rows) % rows
+                if(grid[nx][ny] == 1) points++
+            }
         }
     }
 
-    if(points > 3 || points < 2) next[x][y] = 0
-    else if(points == 3) next[x][y] = 1
+    if((points == 3 || points == 2 ) && grid[x][y] == 1) next[x][y] = 1
+    else if(points == 3 && grid[x][y] == 0) next[x][y] = 1
     else next[x][y] = 0
 }
 
@@ -71,4 +74,10 @@ function drawGrid(){
 }
 
 function draw(){
+    if(animate){
+        next = getEmptyGrid()
+        for(let y = 0; y < rows; y++) for(let x = 0; x < cols; x++) calcPoint(x, y)
+        grid = next
+        drawGrid()
+    }
 }
