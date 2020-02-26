@@ -1,6 +1,6 @@
 let a = 0
-let amount = 20
-let size =  40
+let amount = 15
+let size =  25
 let spacing = 10
 let maxD
 
