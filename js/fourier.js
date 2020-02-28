@@ -1,4 +1,4 @@
-let drawing = false
+let drawing = started = false
 let dt = 0
 let time = 0
 let paintingX = []
@@ -31,32 +31,35 @@ function draw(){
         stroke(255)
         path.forEach(p => (vertex(p.x, p.y)))
         endShape()
+        started = true
     } else {
-        if(drawing){
-            dt = TWO_PI / paintingX.length
-            paintingX = paintingX.map(n => map(n, 0, width, 0, 400))
-            paintingY = paintingY.map(n => map(n, 0, height, 0, 300))
-            paintingX = fTransform(paintingX)
-            paintingY = fTransform(paintingY)
+        if(started){
+            if(drawing){
+                dt = TWO_PI / paintingX.length
+                paintingX = paintingX.map(n => map(n, 0, width, 0, 400))
+                paintingY = paintingY.map(n => map(n, 0, height, 0, 300))
+                paintingX = fTransform(paintingX)
+                paintingY = fTransform(paintingY)
+            }
+    
+            let vx = epiCycles(width / 2, 100, 0, paintingX)
+            let vy = epiCycles(100, height / 2, HALF_PI, paintingY)
+            let v = createVector(vx.x, vy.y) 
+            line(vx.x, vx.y, v.x, v.y)
+            line(vy.x, vy.y, v.x, v.y)
+            painting.unshift(v)
+    
+            beginShape()
+            painting.forEach(v => vertex(v.x, v.y))
+            endShape()
+    
+            if(time > TWO_PI) {
+                time = 0
+                painting = []
+            }
+            time += dt
+            drawing = false
         }
-
-        let vx = epiCycles(width / 2, 100, 0, paintingX)
-        let vy = epiCycles(100, height / 2, HALF_PI, paintingY)
-        let v = createVector(vx.x, vy.y) 
-        line(vx.x, vx.y, v.x, v.y)
-        line(vy.x, vy.y, v.x, v.y)
-        painting.unshift(v)
-
-        beginShape()
-        painting.forEach(v => vertex(v.x, v.y))
-        endShape()
-
-        if(time > TWO_PI) {
-            time = 0
-            painting = []
-        }
-        time += dt
-        drawing = false
     }
 }
 

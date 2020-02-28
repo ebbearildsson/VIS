@@ -1,4 +1,4 @@
-let precision = 0.001
+let precision = 0.003
 let iterations = 1000
 let r = 0
 let x = 0.001
@@ -23,7 +23,7 @@ function calcR(){
     r += precision
     let xTemp = calcX()
     let temp = []
-    xTemp.forEach(xt => temp.push(createVector(r * 300, map(xt, 0, 1, height - 50, 50))))
+    xTemp.forEach(xt => temp.push(createVector(map(r, 0, 4.20, 0, width), map(xt, 0, 1, height - 50, 50))))
 
     push()
     fill(0)
