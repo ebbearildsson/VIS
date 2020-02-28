@@ -6,6 +6,21 @@
     font-family: 'Source Serif Pro', 'Libre Baskerville', 'Lora', 'Serif';
 }
 
+.landingPage{
+    height: 100vh;
+    background-image: linear-gradient(¨to bottom right, #13a10e, #73aa24, #bad80a, #222222);
+    background-color: #bad80a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title{
+    font-size: 20vh;
+    color: whitesmoke;
+    text-shadow: 6px 6px #222222;
+}
+
 .sim{
     text-decoration: none;
     text-align: center;
