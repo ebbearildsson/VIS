@@ -39,6 +39,7 @@
 
 .container{
     height: 20vh;
+    width: 100%;
 
     display: flex;
     flex-wrap: wrap;
@@ -52,6 +53,6 @@
 
     .sim{
         font-size: 5vw;
-        width: 100%;
+        width: 100vw;
     }
 }
