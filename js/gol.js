@@ -67,7 +67,7 @@ function drawGrid(){
     background(237)
     for(let y = 0; y < rows; y++){
         for(let x = 0; x < cols; x++){
-            if(grid[x][y] == 1) rect(size / 2 + x * size, size / 2 + y * size, size, size)
+            if(grid[x][y] == 1) ellipse(size / 2 + x * size, size / 2 + y * size, size, size)
         }
     }
 }
