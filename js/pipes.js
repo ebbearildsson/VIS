@@ -1,51 +1,56 @@
 let pipes = []
-let count = 0.1
-let checkP
-let pause = true
+let speed = 200
+let cameraZ = 0
+let length = 50
 
 function setup(){
     createCanvas(innerWidth, innerHeight, WEBGL)
-    background(0)
-    checkP = createCheckbox('Pause', pause)
-    checkP.position(10, 10)
-    checkP.changed(checkPchange)
     strokeWeight(10)
+    background(0)
     noFill()
-    stroke(255)
 }
-
-checkPchange = () => pause = !pause
 
 function getPipe(){
     pipes.push(new Pipe(createVector(random(100, 255), random(100, 255), random(100, 255))))
-    pipes[pipes.length-1].pos.push(createVector(0, 0, 2*count - 50))
+    pipes[pipes.length-1].pos.push(createVector(0, 0, cameraZ - speed * 10))
 }
 
 function draw(){
-    if(!pause){
-        background(0)
-        if(mouseIsPressed && mouseX > 50 && mouseY > 50){
-            getPipe()
+    background(0)
+    if(pipes.length < 100) getPipe()
+
+    let closest = 0
+    let spliced = []
+    for(let i = 0; i < pipes.length; i++) {
+        if(pipes[i].pos.length > length - 1) {
+            if(pipes[i].pos[length - 1].z > closest) closest = pipes[i].pos[length - 1].z
+            if(cameraZ - pipes[i].pos[length - 1].z > speed * 30) spliced.push(i)
+            if(pipes[i].pos.length > length) pipes[i].pos.splice(0, 1)
         }
-        camera(0,0, 2*count,0,0,0,0,1,0)
-        pipes.forEach(p => {
-            p.move(count/10)
-            p.draw()
-        })
-        count++
+        pipes[i].move()
+        pipes[i].draw()
     }
+
+    for(let i = 0; i < spliced.length; i++){
+        pipes.splice(spliced[i], 1)
+    }
+
+    camera(0,0, cameraZ,0,0,0,0,1,0)
+    cameraZ += speed / 5
 }
 
 class Pipe{
     constructor(color){
         this.pos = []
-        this.s = 100
         this.color = color
     }
 
-    move(c){
+    move(){
         let i = this.pos.length - 1
-        this.pos.push(createVector(this.pos[i].x + random(-this.s, this.s) * c, this.pos[i].y + random(-this.s, this.s) * c, this.pos[i].z+ random(-this.s, this.s) * c))
+        let rnd = floor(random(0, 3))
+        if(rnd == 0)      this.pos.push(createVector(this.pos[i].x + random(-speed, speed), this.pos[i].y, this.pos[i].z))
+        else if(rnd == 1) this.pos.push(createVector(this.pos[i].x, this.pos[i].y + random(-speed, speed), this.pos[i].z))
+        else if(rnd == 2) this.pos.push(createVector(this.pos[i].x, this.pos[i].y, this.pos[i].z + random(0, speed)))
     }
 
     draw(){
