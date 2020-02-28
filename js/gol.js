@@ -1,6 +1,6 @@
 let grid = []
 let next = []
-let size = 10
+let size = 5
 let cols, rows
 let animate = false
 
@@ -10,7 +10,9 @@ function setup(){
     rows = f(height) / size
     grid = getEmptyGrid()
     next = getEmptyGrid()
-    strokeWeight(0.4)
+    rectMode(CENTER)
+    noStroke()
+    fill(0)
     drawGrid()
 }
 
@@ -62,13 +64,10 @@ function calcPoint(x, y){
 }
 
 function drawGrid(){
-    background(255)
+    background(237)
     for(let y = 0; y < rows; y++){
         for(let x = 0; x < cols; x++){
-            if(grid[x][y] == 1) fill(0)
-            else fill(255)
-
-            ellipse(size / 2 + x * size, size / 2 + y * size, size * 0.85)
+            if(grid[x][y] == 1) rect(size / 2 + x * size, size / 2 + y * size, size, size)
         }
     }
 }
