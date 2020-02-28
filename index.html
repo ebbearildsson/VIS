@@ -12,24 +12,56 @@
 </head>
 
 <body>
-    <iframe id="clock" src="html/clock.html"></iframe>
-    <iframe id="solar" src="html/solar.html"></iframe>
-    <iframe id="fourier" src="html/fourier.html"></iframe>
-    <iframe id="equation" src="html/equation.html"></iframe>
-    <iframe id="converter" src="html/converter.html"></iframe>
-    <iframe id="circle" src="html/circle.html"></iframe>
-    <iframe id="yingyang" src="html/yingyang.html"></iframe>
-    <iframe id="fern" src="html/fFern.html"></iframe>
-    <iframe id="tree" src="html/fTree.html"></iframe>
-    <iframe id="triangle" src="html/fTriangle.html"></iframe>
-    <iframe id="fireworks" src="html/fireworks.html"></iframe>
-    <iframe id="strings" src="html/strings.html"></iframe>
-    <iframe id="cardioid" src="html/cardioid.html"></iframe>
-    <iframe id="pipes" src="html/pipes.html"></iframe>
-    <iframe id="react" src="html/react.html"></iframe>
-    <iframe id="raycast" src="html/raycast.html"></iframe>
-    <iframe id="phyllo" src="html/phyllo.html"></iframe>
-    <!--<iframe src="html/fJulia.html"></iframe>-->
+    <div class="container">
+        <a class="sim" href="html/clock.html">Clock</a>
+        <a class="sim" href="html/solar.html">Solar system</a>
+        <a class="sim" href="html/fourier.html">Fourier</a>
+    </div>
+    <div class="container">
+        <a class="sim" href="html/equation.html">Equation</a>
+        <a href="html/converter.html">Converter</a>
+        <a href="html/circle.html">Circle</a>
+    </div>
+    <div class="container">
+        <a href="html/fFern.html">Fractal fern</a>
+        <a href="html/fTree.html">Fractal tree</a>
+        <a href="html/fTriangle.html">Fractal triangle</a>
+    </div>
+    <div class="container">
+        <a href="html/yingyang.html">Ying Yang</a>
+        <a href="html/fireworks.html">Fireworks</a>
+        <a href="html/strings.html">Strings</a>
+    </div>
+    <div class="container">
+        <a href="html/cardioid.html">Cardioid</a>
+        <a href="html/pipes.html">Pipes</a>
+        <a href="html/react.html">Reaction test</a>
+    </div>
+    <div class="container">
+        <a href="html/phyllo.html">Phyllo</a>
+        <a href="html/boxes.html">Boxes</a>
+        <a href="html/PI.html">PI estimator</a>
+    </div>
+    <div class="container">
+        <a href="html/raycast.html">Raycasting</a>
+        <a href="html/raymarch.html">Raymarching</a>
+        <a href="html/raymarch25D.html">Raymarching + 3D render</a>
+    </div>
+    <div class="container">
+        <a href="html/ant.html">Langton's ant</a>
+        <a href="html/gol.html">Game of life</a>
+    </div>
+    <div class="container">
+        <a href="html/fJulia.html">Julia set</a>
+        <a href="html/mandelbrot.html">Mandelbrot set</a>
+    </div>
+    <script>
+        var divs = document.getElementsByClassName('sim');
+        for(let i = 0; i < divs.length; i++) {
+            divs[i].style.backgroundcolor = "#000000";
+            console.log("changed")
+        }
+    </script>
 </body>
 
 </html>
