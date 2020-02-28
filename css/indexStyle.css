@@ -8,8 +8,7 @@
 
 .landingPage{
     height: 100vh;
-    background-image: linear-gradient(¨to bottom right, #13a10e, #73aa24, #bad80a, #222222);
-    background-color: #bad80a;
+    background-image: linear-gradient(to bottom right, #73aa24, #bad80a);
     display: flex;
     justify-content: center;
     align-items: center;
