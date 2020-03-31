@@ -11,9 +11,7 @@
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     </head>
     <body>
-        <div class="landingPage">
-            <span class="title">Pear-fect Code 🍐</span>
-        </div>
+        <div class="landingPage"><span class="title">Pear-fect Code 🍐</span></div>
         <div class="container">
             <a class="sim" href="html/clock.html">       Abstract Clock          </a>
             <a class="sim" href="html/solar.html">       Solar system            </a>
@@ -44,13 +42,8 @@
             <a class="sim" href="">                      New stuff Soon!         </a>
         </div>
         <script>
-            var sims = document.getElementsByClassName('sim');
-            for (var i = 0; i < sims.length; i++) {
-                sims[i].onmouseover = function(e) {
-                    var color = '#'+Math.floor(Math.random()*16777215).toString(16);
-                    this.style['background-color'] = color;
-                }  
-            }
+            var sims = document.getElementsByClassName('sim')
+            for (var i = 0; i < sims.length; i++) sims[i].onmouseover = function(e) {this.style['background-color'] = '#'+Math.floor(Math.random()*16777215).toString(16)}
         </script>
     </body>
 </html>
