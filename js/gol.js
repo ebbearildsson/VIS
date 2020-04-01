@@ -73,6 +73,7 @@ function drawGrid(){
 }
 
 function draw(){
+    text("Press ESC to randomize\nPress ENTER to start\nDraw with left mousebutton", 10, 20)
     if(animate){
         next = getEmptyGrid()
         for(let y = 0; y < rows; y++) for(let x = 0; x < cols; x++) calcPoint(x, y)
