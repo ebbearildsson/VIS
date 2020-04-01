@@ -21,9 +21,9 @@ function draw(){
         let y = 0
         for(let i = 0; i < waves.length; i++){
             fill(250, 150, 50)
-            ellipse(x, spacing * (i + 2) + sin(waves[i].x * x + waves[i].y) * amp, 3)
+            ellipse(x, spacing * (i + 3) + sin(waves[i].x * x + waves[i].y) * amp, 3)
             y += sin(waves[i].x * x + waves[i].y)
         }
-        ellipse(x, spacing + map(y * amp, -amp * (waves.length - 1), amp * (waves.length - 1), -amp, amp), 2)
+        ellipse(x, spacing + map(y * amp, -amp * (waves.length - 1), amp * (waves.length - 1), -amp * 2.5, amp * 2.5), 2)
     }
 }
