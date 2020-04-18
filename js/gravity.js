@@ -1,9 +1,11 @@
 let bodies = [];
 let max_velocity = 5;
+let min_size = 5;
+let max_size = 20;
 
 function setup(){
     createCanvas(innerWidth, innerHeight);
-    bodies = getBodies(200)
+    bodies = getBodies(100)
     background(0);
     noStroke();
 }
@@ -11,7 +13,7 @@ function setup(){
 function getBodies(amount){
     let temp_bodies = []
     for(let i = 0; i < amount; i++){
-        temp_bodies.push(new Body(createVector(random(-max_velocity, max_velocity), random(-max_velocity, max_velocity)), createVector(random(0, width), random(0, height)), 10));
+        temp_bodies.push(new Body(createVector(random(-max_velocity, max_velocity), random(-max_velocity, max_velocity)), createVector(random(0, width), random(0, height)), random(min_size, max_size)));
     }
     return temp_bodies;
 }
@@ -34,7 +36,7 @@ class Body{
     }
 
     gravity(){
-        let G = 0.1;
+        let G = 0.015;
         let acc = createVector(0, 0);
         bodies.forEach(b => {
             if(b !== this){
