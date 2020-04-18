@@ -1,16 +1,16 @@
-let colored = []
 let ant, move, sliderN
 let dir = 0
 let step = 5
-let change = false
 
 function setup(){
     createCanvas(innerWidth, innerHeight)
     ant = createVector(f(width / 2), f(height / 2))
-    colored.push(createVector(f(width / 2), f(height / 2)))
     sliderN = createSlider(1, 1000, 1, 1)
     sliderN.position(10, 10)
+
+    frameRate(5)
 }
+
 f = (value) => { return Math.floor(value / step) * step }
 
 function moveR(){
@@ -56,29 +56,29 @@ function moveL(){
 }
 
 function draw(){
-    background(255)
     for(let n = 0; n < sliderN.value(); n++){
-        change = true
-        for(let i = colored.length - 1; i >= 0; i--){
-            if(ant.x == colored[i].x && ant.y == colored[i].y) {
-                moveR()
-                change = false
-                colored.splice(i, 1)
-            } 
+        let stoodOnBlack = false
+        loadPixels()
+        let off = (ant.y * width + ant.x) * pixelDensity() * 4
+        if(pixels[off] + pixels[off + 1] + pixels[off + 2] < 100) stoodOnBlack = true
+        updatePixels()
+
+        console.log(stoodOnBlack)
+
+        if(stoodOnBlack == true){ 
+            fill(255)
+            moveR()
         }
-        if(change) {
+        else {
+            fill(0)
             moveL()
-            colored.push(createVector(ant.x, ant.y))
-            change = false
         }
+        ellipse(ant.x, ant.y, step)
+        
         ant.add(move)
         if(ant.x > width) ant.x = 0
         else if(ant.x < 0) ant.x = f(width)
         if(ant.y > height) ant.y = 0
         else if(ant.y < 0) ant.y = f(height)
     }
-    fill(0)
-    colored.forEach(p => ellipse(p.x, p.y, step * 0.9))
-    fill(255, 0, 0)
-    ellipse(ant.x, ant.y, step * 0.9)
 }
