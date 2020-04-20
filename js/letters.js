@@ -3,6 +3,8 @@ let targets = [];
 let animating = false;
 const G = 1000;
 const bounce_coefficient = 1;
+const min_size = 5;
+const max_size = 25;
 const max_velocity = 5;
 
 function setup(){
@@ -21,7 +23,7 @@ function draw(){
         });
     } else if(mouseIsPressed) targets.push(createVector(mouseX, mouseY));
     targets.forEach(target => ellipse(target.x, target.y, 2));
-    text("Draw by holding down left click\nPress ENTER to start animation", 10, 10);
+    text("Draw by holding down left click\nPress ENTER to start/clear animation", 10, 10);
 }
 
 function keyPressed() {
@@ -38,14 +40,19 @@ function keyPressed() {
 }
 
 function getDots(){
-    targets.forEach(target => dots.push(new Dot(createVector(random(0, width), random(0, height)), target)));
+    targets.forEach(target => {
+        dots.push(new Dot(createVector(random(0, width), random(0, height)), target, random(min_size, max_size)));
+        dots.push(new Dot(createVector(random(0, width), random(0, height)), target, random(min_size, max_size)));
+        dots.push(new Dot(createVector(random(0, width), random(0, height)), target, random(min_size, max_size)));
+        dots.push(new Dot(createVector(random(0, width), random(0, height)), target, random(min_size, max_size)));
+    });
 }
 
 class Dot{
-    constructor(position, target){
+    constructor(position, target, size){
         this.pos = position;
         this.vel = createVector(0, 0);
-        this.size = 10;
+        this.size = size;
         this.target = target;
     }
 
