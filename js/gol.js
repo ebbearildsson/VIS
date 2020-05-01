@@ -1,6 +1,6 @@
 let grid = []
 let next = []
-let size = 5
+const size = 10
 let cols, rows
 let animate = false
 
@@ -64,7 +64,7 @@ function calcPoint(x, y){
 }
 
 function drawGrid(){
-    background(237)
+    background(237, 50)
     for(let y = 0; y < rows; y++){
         for(let x = 0; x < cols; x++){
             if(grid[x][y] == 1) ellipse(size / 2 + x * size, size / 2 + y * size, size, size)
@@ -78,6 +78,7 @@ function draw(){
         next = getEmptyGrid()
         for(let y = 0; y < rows; y++) for(let x = 0; x < cols; x++) calcPoint(x, y)
         grid = next
+        fill(0)
         drawGrid()
     }
 }

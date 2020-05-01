@@ -30,10 +30,10 @@ function keyPressed() {
     if (keyCode === ENTER) {
         if(animating === false){
             getDots();
+            targets = [];
         }
         if(animating === true){
             dots = [];
-            targets = [];
         }
         animating = !animating;
     } 
