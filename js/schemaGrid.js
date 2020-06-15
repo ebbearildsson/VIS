@@ -37,14 +37,7 @@ window.onload = function(){
         Civics: new ColorScheme('rgb(0, 0, 160)'),
         Physics: new ColorScheme('rgb(0, 0, 255)'),
         Engineering: new ColorScheme('rgb(255, 0, 0)'),
-        Computer: new ColorScheme('rgb(255, 0, 0)'),
-        UNS: 'rgb(250, 233, 0)',
-        NMP: 'rgb(0, 29, 250)',
-        CLF: 'rgb(0, 246, 250)',
-        DCH: 'rgb(163, 16, 0)',
-        EDB: 'rgb(0, 106, 163)',
-        KKM: 'rgb(33, 163, 0)',
-        BAI: 'rgb(222, 53, 11)'
+        Computer: new ColorScheme('rgb(255, 0, 0)')
     };
 
     week.add();
