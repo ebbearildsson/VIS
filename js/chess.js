@@ -1,12 +1,14 @@
 var board = getCleanBoard();
 var pieces = getCleanPieces();
-let mov = [];
+var mov = [];
 var last;
 const color = {
     blkSq: '#507050',
     whtSq: '#f0f0f0',
-    posMv: '#ffa0a0',
-    kilMv: '#ff5050'
+    whtPosMv: '#ffa0a0',
+    whtKilMv: '#ff5050',
+    blkPosMv: '#ee8585',
+    blkKilMv: '#ee3030'
 };
 
 window.onload = function(){
@@ -26,6 +28,7 @@ function click(e){
         let piece = pieces[e.target.id]; 
         if(piece === 'pd' || piece === 'pl') mov = pawnMoves(e.target.id, board);
         if(piece === 'rd' || piece === 'rl') mov = rookMoves(e.target.id, board);
+        if(piece === 'kd' || piece === 'kl') mov = kingMoves(e.target.id, board);
         if(piece === 'nd' || piece === 'nl') mov = knightMoves(e.target.id, board);
         if(piece === 'bd' || piece === 'bl') mov = bishopMoves(e.target.id, board);
         if(piece === 'qd' || piece === 'ql') mov = [].concat(rookMoves(e.target.id, board), bishopMoves(e.target.id, board));
@@ -36,15 +39,58 @@ function click(e){
 
 function colorPossibleMoves(moves){
     moves.forEach(sq => {
-        if(pieces[sq].length !== 1) document.getElementById(sq).style.backgroundColor = color['kilMv'];
-        else document.getElementById(sq).style.backgroundColor = color['posMv'];
+        if((sq.charCodeAt(0) + sq.charCodeAt(1) + 1) % 2 === 0){
+            if(pieces[sq].length !== 1) document.getElementById(sq).style.backgroundColor = color['whtKilMv'];
+            else document.getElementById(sq).style.backgroundColor = color['whtPosMv'];
+        } else {
+            if(pieces[sq].length !== 1) document.getElementById(sq).style.backgroundColor = color['blkKilMv'];
+            else document.getElementById(sq).style.backgroundColor = color['blkPosMv'];
+        }
     });
+}
+
+function kingMoves(square, board){
+    var moves = [];
+    if(board[an2i(square) - 11] !== -1 && pieces[board[an2i(square) - 11]][1] !== pieces[square][1]) moves.push(board[an2i(square) - 11]);
+    if(board[an2i(square) - 10] !== -1 && pieces[board[an2i(square) - 10]][1] !== pieces[square][1]) moves.push(board[an2i(square) - 10]);
+    if(board[an2i(square) - 9] !== -1 && pieces[board[an2i(square) - 9]][1] !== pieces[square][1]) moves.push(board[an2i(square) - 9]);
+    if(board[an2i(square) - 1] !== -1 && pieces[board[an2i(square) - 1]][1] !== pieces[square][1]) moves.push(board[an2i(square) - 1]);
+    if(board[an2i(square) + 1] !== -1 && pieces[board[an2i(square) + 1]][1] !== pieces[square][1]) moves.push(board[an2i(square) + 1]);
+    if(board[an2i(square) + 9] !== -1 && pieces[board[an2i(square) + 9]][1] !== pieces[square][1]) moves.push(board[an2i(square) + 9]);
+    if(board[an2i(square) + 10] !== -1 && pieces[board[an2i(square) + 10]][1] !== pieces[square][1]) moves.push(board[an2i(square) + 10]);
+    if(board[an2i(square) + 11] !== -1 && pieces[board[an2i(square) + 11]][1] !== pieces[square][1]) moves.push(board[an2i(square) + 11]);
+    return moves;
 }
 
 function pawnMoves(square, board){
     var moves = [];
-    if(pieces[square][1] === 'd'){
-        if(square[1] == 7) moves.push(square);
+    if(pieces[square][1] === 'd' && board[an2i(square) + 10] !== -1){
+        if(pieces[board[an2i(square) + 10]].length === 1){
+            moves.push(board[an2i(square) + 10]);
+            if(square[1] == 7 && pieces[board[an2i(square) + 20]].length === 1){
+                moves.push(board[an2i(square) + 20]);
+            }
+        }
+        if(pieces[board[an2i(square) + 9]][1] == 'l'){
+            moves.push(board[an2i(square) + 9]);
+        }
+        if(pieces[board[an2i(square) + 11]][1] == 'l'){
+            moves.push(board[an2i(square) + 11]);
+        }
+    }
+    if(pieces[square][1] === 'l' && board[an2i(square) - 10] !== -1){
+        if(pieces[board[an2i(square) - 10]].length === 1){
+            moves.push(board[an2i(square) - 10]);
+            if(square[1] == 2 && pieces[board[an2i(square) - 20]].length === 1){
+                moves.push(board[an2i(square) - 20]);
+            }
+        }
+        if(pieces[board[an2i(square) - 9]][1] == 'd'){
+            moves.push(board[an2i(square) - 9]);
+        }
+        if(pieces[board[an2i(square) - 11]][1] == 'd'){
+            moves.push(board[an2i(square) - 11]);
+        }
     }
     return moves;
 }
@@ -154,12 +200,10 @@ function getCleanPieces(){
     }
 }
 
-// converts an index in the mailbox into its corresponding value in algebraic notation
 function i2an(i) {
     return "abcdefgh"[(i % 10) - 1] + (10 - Math.floor(i / 10));
 }
 
-// converts a position in algebraic notation into its location in the mailbox
 function an2i(square) {
     return "abcdefgh".indexOf(square[0]) + 1 + (10 - square[1]) * 10;
 }
