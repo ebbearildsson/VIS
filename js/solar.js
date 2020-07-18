@@ -18,24 +18,24 @@ function getSystem(){
     if(height < width) max = height / 2
     else max = width / 2 
     // Moons
-    let moon     = new Mass('The Moon',  max * 0.005, max * 0.032, createVector(240, 240, 240), [])
-    let ganymede = new Mass('Ganymedes', max * 0.005, max * 0.075, createVector(240, 240, 240), [])
-    let callisto = new Mass('Callisto',  max * 0.005, max * 0.063, createVector(240, 240, 240), [])
-    let io       = new Mass('IO',        max * 0.002, max * 0.056, createVector(240, 240, 240), [])
-    let europa   = new Mass('Europa',    max * 0.002, max * 0.043, createVector(240, 240, 240), [])
-    let titan    = new Mass('Titan',     max * 0.005, max * 0.026, createVector(240, 240, 240), [])
-    let triton   = new Mass('Triton',    max * 0.005, max * 0.022, createVector(240, 240, 240), [])
+    let moon     = new Mass('The Moon',  max * 0.005, max * 0.032, color(240, 240, 240), [])
+    let ganymede = new Mass('Ganymedes', max * 0.005, max * 0.075, color(240, 240, 240), [])
+    let callisto = new Mass('Callisto',  max * 0.005, max * 0.063, color(240, 240, 240), [])
+    let io       = new Mass('IO',        max * 0.002, max * 0.056, color(240, 240, 240), [])
+    let europa   = new Mass('Europa',    max * 0.002, max * 0.043, color(240, 240, 240), [])
+    let titan    = new Mass('Titan',     max * 0.005, max * 0.026, color(240, 240, 240), [])
+    let triton   = new Mass('Triton',    max * 0.005, max * 0.022, color(240, 240, 240), [])
     // Planets
-    let mercury  = new Mass('Mercury',   max * 0.005, max * 0.10,  createVector(250, 50, 50),   [])
-    let venus    = new Mass('Venus',     max * 0.010, max * 0.15,  createVector(100, 50, 50),   [])
-    let earth    = new Mass('Earth',     max * 0.020, max * 0.25,  createVector(50, 150, 50),   [moon])
-    let mars     = new Mass('Mars',      max * 0.015, max * 0.35,  createVector(250, 150, 50),  [])
-    let jupiter  = new Mass('Jupiter',   max * 0.035, max * 0.60,  createVector(200, 200, 120), [ganymede, callisto, io, europa])
-    let saturn   = new Mass('Saturn',    max * 0.025, max * 0.73,  createVector(255, 200, 120), [titan])
-    let uranus   = new Mass('Uranus',    max * 0.025, max * 0.87,  createVector(150, 200, 200), [])
-    let neptune  = new Mass('Neptune',   max * 0.025, max * 0.95,  createVector(100, 100, 200), [triton])
+    let mercury  = new Mass('Mercury',   max * 0.005, max * 0.10,  color(250, 50, 50),   [])
+    let venus    = new Mass('Venus',     max * 0.010, max * 0.15,  color(100, 50, 50),   [])
+    let earth    = new Mass('Earth',     max * 0.020, max * 0.25,  color(50, 150, 50),   [moon])
+    let mars     = new Mass('Mars',      max * 0.015, max * 0.35,  color(250, 150, 50),  [])
+    let jupiter  = new Mass('Jupiter',   max * 0.035, max * 0.60,  color(200, 200, 120), [ganymede, callisto, io, europa])
+    let saturn   = new Mass('Saturn',    max * 0.025, max * 0.73,  color(255, 200, 120), [titan])
+    let uranus   = new Mass('Uranus',    max * 0.025, max * 0.87,  color(150, 200, 200), [])
+    let neptune  = new Mass('Neptune',   max * 0.025, max * 0.95,  color(100, 100, 200), [triton])
     // The sun
-    sun          = new Mass('The Sun',   max * 0.050,          0,  createVector(255, 255, 0),   [mercury, venus, earth, mars, jupiter, saturn, uranus, neptune])
+    sun          = new Mass('The Sun',   max * 0.050,          0,  color(255, 255, 0),   [mercury, venus, earth, mars, jupiter, saturn, uranus, neptune])
 }
 
 function windowResized() {
@@ -57,7 +57,7 @@ class Mass{
         this.m = moons
         this.n = name
         this.s = size
-        this.a = 0
+        this.a = random(0, TWO_PI)
         this.x = 0
         this.y = 0
         this.w = 0
@@ -81,7 +81,7 @@ class Mass{
         }
 
         noStroke()
-        fill(this.c.x, this.c.y, this.c.z)
+        fill(this.c)
         ellipse(this.x, this.y, this.s)
         this.m.forEach(moon => moon.draw(this.x, this.y))
     }
