@@ -37,6 +37,10 @@
     color: whitesmoke;
 }
 
+.heading{
+    width: 100%;
+}
+
 .container{
     height: 20vh;
     width: 100%;
@@ -53,6 +57,10 @@
 
     .sim{
         font-size: 5vw;
-        width: 100vw;
+        width: 100%;
+    }
+
+    .heading{
+        font-size: 10vw;
     }
 }
