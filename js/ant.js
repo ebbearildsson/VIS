@@ -1,6 +1,6 @@
-let ant, arr, move, sliderN, sliderS;
+let ant, field, move, sliderN, sliderS;
 let dir = 0;
-let step = 2;
+let step = 1;
 
 function setup(){
     createCanvas(innerWidth, innerHeight);
@@ -9,7 +9,6 @@ function setup(){
     sliderS = createSlider(2, 40, 4, 2);
     sliderN.position(10, 10);
     sliderS.position(10, 30);
-    arr = getField();
     rectMode(CENTER);
     noStroke();
 }
@@ -63,20 +62,20 @@ function moveL(){
 function draw(){
     if(sliderS.value() !== step){
         step = sliderS.value();
-        arr = getField();
+        field = getField();
         background(255);
     }
     for(let n = 0; n < sliderN.value(); n++){
         let stoodOnBlack = false;
-        if(arr[ant.y * f(width) + ant.x] == true) stoodOnBlack = true;
+        if(field[ant.y * f(width) + ant.x] == true) stoodOnBlack = true;
 
         if(stoodOnBlack){ 
-            arr[ant.y * f(width) + ant.x] = false;
+            field[ant.y * f(width) + ant.x] = false;
             fill(255);
             moveR();
         }
         else {
-            arr[ant.y * f(width) + ant.x] = true;
+            field[ant.y * f(width) + ant.x] = true;
             fill(0);
             moveL();
         }
