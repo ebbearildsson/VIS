@@ -1,13 +1,12 @@
-let ant, move, sliderN, sliderS;
-let arr;
+let ant, arr, move, sliderN, sliderS;
 let dir = 0;
 let step = 2;
 
 function setup(){
     createCanvas(innerWidth, innerHeight);
     ant = createVector(f(width / 2), f(height / 2));
-    sliderN = createSlider(1, 1000, 1, 1);
-    sliderS = createSlider(1, 50, 5, 1);
+    sliderN = createSlider(1, 10000, 1, 10);
+    sliderS = createSlider(2, 40, 4, 2);
     sliderN.position(10, 10);
     sliderS.position(10, 30);
     arr = getField();
@@ -15,13 +14,7 @@ function setup(){
     noStroke();
 }
 
-getField = () => {
-    let array = new Array(f(width / step) * f(height / step));
-    array.forEach(p => {
-        p = false;
-    });
-    return array;
-}
+getField = () => { return new Array(f(width / step) * f(height / step)).fill(false) }
 
 f = (value) => { return Math.floor(value / step) * step }
 
@@ -77,14 +70,14 @@ function draw(){
         let stoodOnBlack = false;
         if(arr[ant.y * f(width) + ant.x] == true) stoodOnBlack = true;
 
-        if(stoodOnBlack == true){ 
-            fill(255);
+        if(stoodOnBlack){ 
             arr[ant.y * f(width) + ant.x] = false;
+            fill(255);
             moveR();
         }
         else {
-            fill(0);
             arr[ant.y * f(width) + ant.x] = true;
+            fill(0);
             moveL();
         }
         rect(ant.x, ant.y, step, step);
@@ -97,6 +90,6 @@ function draw(){
         fill(255, 0, 0);
         rect(ant.x, ant.y, step, step);
     }
-    fill(90)
+    fill(0, 0, 255)
     text(`Moves per frame: ${sliderN.value()}\nSize (Pixels): ${sliderS.value()}`, 175, 27);
 }
