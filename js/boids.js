@@ -1,11 +1,12 @@
 const size = 10;
-const vision = 200;
+const vision = 1000;
 const amount = 50;
 const speed = 5;
-const ruleC = 0.05;
-const ruleS = 10;
-const ruleA = 0.05;
+let ruleC = 0.05;
+let ruleS = 10;
+let ruleA = 0.05;
 let drawV = false;
+let drawS = false;
 let boids = [];
 
 function setup(){
@@ -125,8 +126,10 @@ class Boid{
         translate(this.pos.x, this.pos.y);
         fill(255);
         ellipse(0, 0, size);
-        fill(255, 5)
-        ellipse(0, 0, vision * 2);
+        if(drawS){
+            fill(255, 5);
+            ellipse(0, 0, vision * 2);
+        }
         if(drawV){
             stroke(255, 0, 0);
             line(0, 0, this.vel.x * 10, this.vel.y * 10);
