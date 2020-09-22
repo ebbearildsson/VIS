@@ -26,7 +26,7 @@ function getPoints(){
 
         while(n <= i){
             let xtemp = x;
-            x = -sq(x) + x * t + y;
+            x = -sq(x) + x * t + y + sq(x);
             y = sq(xtemp) - sq(y) - sq(t) - xtemp * y + y * t - xtemp + y;
             n++
         }

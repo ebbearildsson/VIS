@@ -1,66 +1,203 @@
 @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville|Lora|Source+Serif+Pro&display=swap');
 
+:root {
+    --main-bg-color: #dfdfdf;
+    --second-bg-color:  #a0a0a0;
+    --main-sh-color: #101010;
+}
+
 * {
     margin: 0;
     padding: 0;
     font-family: 'Source Serif Pro', 'Libre Baskerville', 'Lora', 'Serif';
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
-.landingPage{
+body {
     height: 100vh;
-    background-image: linear-gradient(to bottom right, #73aa24, #bad80a);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    color: var(--main-bg-color);
+    text-shadow: 1px 1px 5px var(--main-sh-color);
 }
 
-.title{
-    font-size: 20vh;
-    color: whitesmoke;
-    text-shadow: 6px 6px #222222;
-}
-
-.sim{
+a {
+    color: var(--main-bg-color);
+    font-weight: 800;
     text-decoration: none;
     text-align: center;
-    font-size: 5vh;
-    text-shadow: 2px 2px #222222;
+}
 
+.title {
+    font-size: 4vw;
+}
+
+.text {
+    text-align: center;
+    font-size: 1.5vw;
     width: 50%;
+}
+
+.panel {
+    position: relative;
     height: 100%;
-
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: var(--main-bg-color);
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-
-    background-color: #222222;
-    color: whitesmoke;
+    align-items: center;
 }
 
-.heading{
-    width: 100%;
+.content {
+    height: 40%;
 }
 
-.container{
-    height: 20vh;
+.info {
+    width: 300px;
+    position: absolute;
     width: 100%;
-
+    height: 100%;
+    text-shadow: 1px 1px 5px var(--main-sh-color);
+    font-size: 1.5vw;
+    text-align: center;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
     align-items: center;
+}
+
+.sim {
+    padding: 1vw;
+    width: 19%;
+    border-radius: 10px;
+}
+
+.menu{
+    background-color: rgba(255, 255, 255, 0.2);
+    justify-content: space-evenly;
+    text-align: center;
+    position: fixed;
+    display: flex;
+    z-index: 9999;
+    width: 100%;
+    top: 0;
+}
+
+.menu a{
+    display: inline-block;
+    font-weight: bold;
+    font-size:1.2vw;
+    padding: 1vw;
+    width: 8vw;
+}
+
+.menu a:hover{
+    background-color: var(--second-bg-color);
+}
+
+#start {
+    background-image: url(../img/landing.jpg);
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+#start .info{
+    justify-content: center;
+}
+
+#fractals {
+    background-image: url(../img/i1.jpg);
+    background-position: center center;
+    background-attachment: fixed;
+    height: 60%;
+}
+
+#rays {
+    background-image: url(../img/i2.jpg);
+    background-position: center center;
+    background-attachment: fixed;
+    height: 60%;
+}
+
+#math {
+    background-image: url(../img/i3.jpg);
+    background-position: center center;
+    background-attachment: fixed;
+    height: 60%;
+}
+
+#physics {
+    background-image: url(../img/i4.jpg);
+    background-position: center center;
+    background-attachment: fixed;
+    height: 60%;
+}
+
+#simulations {
+    background-image: url(../img/i5.jpg);
+    background-position: center center;
+    background-attachment: fixed;
+    height: 60%;
+}
+
+#games {
+    background-image: url(../img/i6.jpg);
+    background-position: center center;
+    background-attachment: fixed;
+    height: 60%;
+}
+
+#random {
+    background-image: url(../img/i7.jpg);
+    background-position: center center;
+    background-attachment: fixed;
+    height: 60%;
+}
+
+#footer {
+    height: 10%;
+    background-color: var(--second-bg-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 1.5vw;
+}
+
+.p100 {
+    background-color: rgb(100, 200, 100);
+}
+
+.p50 {
+    background-color: rgb(200, 200, 100);
+}
+
+.p0 {
+    background-color: rgb(255, 0, 100);
 }
 
 @media only screen and (orientation: portrait) {
-    .title{
-        font-size: 20vw;
+    .title {
+        font-size: 8vw;
+    }
+
+    .text {
+        font-size: 3vw;
     }
 
     .sim{
-        font-size: 5vw;
-        width: 100%;
+        font-size: 4vw;
+        width: 33%;
     }
 
-    .heading{
-        font-size: 10vw;
+    .menu a{
+        font-size: 2vw;
+    }
+
+    #footer {
+        font-size: 4vw;
     }
 }

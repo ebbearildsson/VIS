@@ -1,72 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Pearfect</title>
-        <link rel="stylesheet" href="css/indexStyle.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/p5.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/addons/p5.dom.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    </head>
-    <body>
-        <div class="landingPage"><span class="title">Pearfect🍐</span></div>
-        <div class="container">
-            <span class="sim heading">Fractals</span>
-            <a class="sim" href="html/fFern.html">       Fern            </a>
-            <a class="sim" href="html/fTree.html">       Tree            </a>
-            <a class="sim" href="html/fTriangle.html">   Triangle        </a>
-            <a class="sim" href="html/carpet.html">      Carpet          </a>
-            <span class="sim heading">Rays</span>
-            <a class="sim" href="html/raycast.html">     Raycasting 2D           </a>
-            <a class="sim" href="html/raymarch.html">    Raymarching 2D          </a>
-            <a class="sim" href="html/raymarch25D.html"> Raymarching + 3D Render </a>
-            <a class="sim" href="html/raymarch3d.html">  Raymarching 3D          </a>
-            <span class="sim heading">Math</span>
-            <a class="sim" href="html/fourier.html">     Fourier Transform       </a>
-            <a class="sim" href="html/equation.html">    Equation                </a>
-            <a class="sim" href="html/waves.html">       Waves                   </a>
-            <a class="sim" href="html/PI.html">          PI Estimator            </a>
-            <a class="sim" href="html/circle.html">      Circle                  </a>  
-            <a class="sim" href="html/fJulia.html">      Julia Set               </a>
-            <a class="sim" href="html/mandelbrot.html">  Mandelbrot Set          </a>
-            <a class="sim" href="html/matte.html">       Integral                </a>
-            <a class="sim" href="html/pattern.html">     Pattern                 </a>
-            <a class="sim" href="html/cardioid.html">    Cardioid                </a>
-            <a class="sim" href="html/phyllo.html">      Phyllo                  </a>
-            <a class="sim" href="">                      New stuff Soon!         </a>
-            <span class="sim heading">Physics</span>
-            <a class="sim" href="html/solar.html">       Solar system            </a>
-            <a class="sim" href="html/gravity.html">     Gravity                 </a>     
-            <span class="sim heading">Simulations</span>
-            <a class="sim" href="html/ant.html">         Langton's Ant           </a>
-            <a class="sim" href="html/gol.html">         Game of Life            </a>
-            <a class="sim" href="html/corona.html">      Corona simulation       </a>
-            <a class="sim" href="">                      New stuff Soon!         </a>
-            <span class="sim heading">Games</span>
-            <a class="sim" href="html/chess.html">       Chess                   </a>
-            <a class="sim" href="html/react.html">       Reaction Test           </a>
-            <span class="sim heading">Random</span>
-            <a class="sim" href="html/clock.html">       Abstract Clock          </a>  
-            <a class="sim" href="html/converter.html">   Converter               </a>
-            <a class="sim" href="html/yingyang.html">    Ying and Yang           </a>
-            <a class="sim" href="html/letters.html">     Letters                 </a>
-            <a class="sim" href="html/strings.html">     Web Creator             </a> 
-            <a class="sim" href="html/pipes.html">       Pipes                   </a>
-            <a class="sim" href="html/boxes.html">       Boxes                   </a>
-            <a class="sim" href="html/schemaGrid.html">  Schedule using grid     </a>
-            <span class="sim heading">Broken</span>       
-            <a class="sim" href="html/fireworks.html">   Fireworks               </a> 
-            <a class="sim" href="html/ratios.html">      Ratios                  </a>
-            <a class="sim" href="html/portals.html">     Portals                 </a>
-            <a class="sim" href="html/game.html">        Game                    </a>
-            <a class="sim" href="html/boids.html">       Boids                   </a>
-            <a class="sim" href="">                      New stuff Soon!         </a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Pear</title>
+    <link rel="stylesheet" href="css/newindexstyle.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="menu">
+        <a href="#start">Start</a>
+        <a href="#fractals">Fractals</a>
+        <a href="#rays">Rays</a>
+        <a href="#math">Math</a>
+        <a href="#physics">Physics</a>
+        <a href="#simulations">Simulations</a>
+        <a href="#games">Games</a>
+        <a href="#random">Random</a>
+        <a href="#footer">Contact</a>
+    </div>
+    <div id="start" class="panel">
+        <div class="title">Pear's code</div>
+        <div class="text"> Some cool visualizations, simulations and stuff</div>
+    </div>
+    <div id="fractals" class="panel picture">
+        <div class="title">Fractals</div>
+        <div class="text"><a href="https://en.wikipedia.org/wiki/Fractal">In mathematics, a fractal is a self-similar subset of Euclidean space whose fractal dimension strictly exceeds its topological dimension</a></div>
+    </div>
+    <div class="panel content">
+        <div class="info">
+            <a class="sim p100" href="html/fFern.html">       Fern            </a>
+            <a class="sim p100" href="html/fTree.html">       Tree            </a>
+            <a class="sim p100" href="html/fTriangle.html">   Triangle        </a>
+            <a class="sim p100" href="html/carpet.html">      Carpet          </a>
+            <a class="sim p50"  href="html/fJulia.html">      Julia Set       </a>
+            <a class="sim p100" href="html/mandelbrot.html">  Mandelbrot Set  </a>
         </div>
-        <script>
-            var sims = document.getElementsByClassName('sim')
-            for (var i = 0; i < sims.length; i++) sims[i].onmouseover = function(e) {this.style['background-color'] = '#'+Math.floor(Math.random()*16777215).toString(16)}
-        </script>
-    </body>
+    </div>
+    <div id="rays" class="panel picture">
+        <div class="title">Rays</div>
+        <div class="text"><a href="https://en.wikipedia.org/wiki/Ray_tracing_(graphics)">In 3D computer graphics, ray tracing is a rendering technique for generating an image by tracing the path of light as pixels in an image plane and simulating the effects of its encounters with virtual objects</a></div>
+    </div>
+    <div class="panel content">
+        <div class="info">
+            <a class="sim p50"  href="html/raycast.html">     Raycasting 2D           </a>
+            <a class="sim p100" href="html/raymarch.html">    Raymarching 2D          </a>
+            <a class="sim p100" href="html/raymarch25D.html"> Raymarching + 3D Render </a>
+            <a class="sim p50"  href="html/raymarch3d.html">  Raymarching 3D          </a>
+        </div>
+    </div>
+    <div id="math" class="panel picture">
+        <div class="title">Math</div>
+        <div class="text"><a href="https://en.wikipedia.org/wiki/Mathematics">Mathematics includes the study of such topics as quantity (number theory), structure (algebra), space (geometry) and change (mathematical analysis). It has no generally accepted definition</a></div>
+    </div>
+    <div class="panel content">
+        <div class="info">
+            <a class="sim p100" href="html/fourier.html">     Fourier Transform       </a>
+            <a class="sim p100" href="html/equation.html">    Equation                </a>
+            <a class="sim p0"   href="html/waves.html">       Waves                   </a>
+            <a class="sim p100" href="html/PI.html">          PI Estimator            </a>
+            <a class="sim p100" href="html/circle.html">      Circle                  </a>  
+            <a class="sim p50"  href="html/matte.html">       Integral                </a>
+            <a class="sim p50"  href="html/pattern.html">     Pattern                 </a>
+            <a class="sim p100" href="html/cardioid.html">    Cardioid                </a>
+            <a class="sim p100" href="html/phyllo.html">      Phyllo                  </a>
+            <a class="sim p0"   href="html/ratios.html">      Ratios                  </a>
+        </div>
+    </div>
+    <div id="physics" class="panel picture">
+        <div class="title">Physics</div>
+        <div class="text"><a href="https://en.wikipedia.org/wiki/Physics">Physics is the natural science that studies matter, its motion and behavior through space and time, and the related entities of energy and force</a></div>
+    </div>
+    <div class="panel content">
+        <div class="info">
+            <a class="sim p100" href="html/solar.html">       Solar system            </a>
+            <a class="sim p50"  href="html/gravity.html">     Gravity                 </a> 
+            <a class="sim p0"   href="html/boids.html">       Boids                   </a>
+        </div>
+    </div>
+    <div id="simulations" class="panel picture">
+        <div class="title">Simulations</div>
+        <div class="text"><a href="https://en.wikipedia.org/wiki/Simulation">A simulation is an approximate imitation of the operation of a process or system</a></div>
+    </div>
+    <div class="panel content">
+        <div class="info">
+            <a class="sim p100" href="html/ant.html">         Langton's Ant           </a>
+            <a class="sim p100" href="html/gol.html">         Game of Life            </a>
+            <a class="sim p50"  href="html/corona.html">      Corona simulation       </a> 
+        </div>
+    </div>
+    <div id="games" class="panel picture">
+        <div class="title">Games</div>
+        <div class="text"><a href="https://en.wikipedia.org/wiki/Game">A game is a structured form of play, usually undertaken for entertainment or fun, and sometimes used as an educational tool</a></div>
+    </div>
+    <div class="panel content">
+        <div class="info">
+            <a class="sim p50"  href="html/chess.html">       Chess                   </a>
+            <a class="sim p100" href="html/react.html">       Reaction Test           </a>
+            <a class="sim p0"   href="html/game.html">        Game                    </a> 
+            <a class="sim p0"   href="html/portals.html">     Portals                 </a>
+        </div>
+    </div>
+    <div id="random" class="panel picture">
+        <div class="title">Random</div>
+        <div class="text"><a href="https://en.wikipedia.org/wiki/Randomness">In the common parlance, randomness is the apparent lack of pattern or predictability in events</a></div>
+    </div>
+    <div class="panel content">
+        <div class="info">
+            <a class="sim p100" href="html/clock.html">       Abstract Clock          </a>  
+            <a class="sim p0"   href="html/converter.html">   Converter               </a>
+            <a class="sim p100" href="html/yingyang.html">    Ying and Yang           </a>
+            <a class="sim p100" href="html/letters.html">     Letters                 </a>
+            <a class="sim p100" href="html/strings.html">     Web Creator             </a> 
+            <a class="sim p100" href="html/pipes.html">       Pipes                   </a>
+            <a class="sim p100" href="html/boxes.html">       Boxes                   </a>
+            <a class="sim p50"  href="html/schemaGrid.html">  Schedule using grid     </a> 
+            <a class="sim p50"  href="html/fireworks.html">   Fireworks               </a> 
+        </div>
+    </div>
+    <div id="footer" class="panel">
+        <a href="https://www.instagram.com/ebbearildsson/">Instagram</a>
+        <a href="https://twitter.com/EbbeArildsson">Twitter</a>
+    </div>
+  </body>
 </html>
+
+
