@@ -9,7 +9,7 @@ function setup(){
     staple_width = (width / 3) / (months.length + 5)
     textAlign(CENTER)
     background(0)
-    textSize(width / 110)
+    textSize(width / 130)
 }
 
 function getMonths(){
@@ -58,8 +58,23 @@ function getMonths(){
     ))
     tempMonths.push(new Month(
         'September', 
-        [500, 200, 134, 3292],        
-        [39.6, 24, 80, 10, 10, 30, 10, 10, 18.5, 10, 10, 10, 10, 10, 20, 63, 24, 115, 487, 39, 176.35, 45, 80, 65, 10, 40, 650, 425, 46.7, 10, 10, 10, 9, 25, 60, 90, 35, 45, 45, 45, 297, 150, 45, 40, 114]
+        [500, 200, 134, 3292, 19.69],        
+        [39.6, 24, 80, 10, 10, 30, 10, 10, 18.5, 10, 10, 10, 10, 10, 20, 63, 24, 115, 487, 39, 176.35, 45, 80, 65, 10, 40, 650, 425, 46.7, 10, 10, 10, 9, 25, 60, 90, 35, 45, 45, 45, 297, 150, 45, 40, 114, 45, 510, 61.2, 105.28, 100, 50, 10, 10, 10, 10, 45, 45, 45, 149, 40, 33]
+    ))
+    tempMonths.push(new Month(
+        'Oktober', 
+        [3292],        
+        []
+    ))
+    tempMonths.push(new Month(
+        'November', 
+        [3292],        
+        []
+    ))
+    tempMonths.push(new Month(
+        'December', 
+        [2469],        
+        []
     ))
     return tempMonths;
 }
@@ -92,7 +107,7 @@ function staples(inc, out, net, name, x, max){
     fill(255, 100, 0)
     rect(-staple_width / 2 + x, height / 2, staple_width, -map(net, 0, max, 0, height / 2))
     fill(255)
-    text(`${name}\nNet: ${net.toFixed(2)}\nIncome: ${inc.toFixed(2)}\nExpenses: ${out.toFixed(2)}`, x, height - 80)
+    text(`${name}\nNet: ${net.toFixed(2)}\nIncome: ${inc.toFixed(2)}\nExpenses: ${out.toFixed(2)}`, x, height - 120)
 }
 
 class Month{
