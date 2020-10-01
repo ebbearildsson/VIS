@@ -1,8 +1,9 @@
 let size
 let months = [];
 let staple_width;
-let maxMonth = 10000;
+let maxMonth = 12000;
 let maxTransfer = maxMonth / 2
+let marker_height = 10
 
 function setup(){
     createCanvas(innerWidth, innerHeight)
@@ -25,7 +26,7 @@ function getMonths(){
     tempMonths.push(new Month('July',      [200, -185, -69, -20, -100, -53.1, -79, 82, 26, -427, -19.95, -34, 131, -26, -290.76, 140, -300, -39.95, -261.85, -104, -200, -12]))
     tempMonths.push(new Month('August',    [-49.85, -80, -37.5, -111.4, 55, -254, -14.5, -249, -50, 50, 600, -25, -21.95, -128.9, -210, -240, -100, -79.2, -98, 473, -400, 407, -473.16, -510, -500, -90, -350, -10, -10, -10, -40, -45, -220, 4115, -10, -10, -10, -10, -66, -112, -50, -20, -10, -40, -65, -45, -40, -10, -10, -10, -18.5, -10]))
     tempMonths.push(new Month('September', [-39.6, -24, 500, -80, -10, -10, 200, -30, -10, -10, -18.5, -10, -10, -10, -10, -10, -20, -63, -10, -24, -115, -24, -176.35, -45, -80, 134, -65, -10, -40, -650, -425, -46.7, -10, -10, -9, -25, -60, -90, -35, -45, -45, -45, -297, -150, -45, -40, -114, -45, -510, -61.2, -105.28, -100, 3292, -50, -10, -10, -10, -10, -45, -45, -45, -149, -40, 19.69, -33, 300]))
-    //tempMonths.push(new Month('Oktober',   []))
+    tempMonths.push(new Month('Oktober',   [-77.9]))
     //tempMonths.push(new Month('November',  []))
     //tempMonths.push(new Month('December',  []))
     return tempMonths;
@@ -40,18 +41,19 @@ function draw(){
     let lastX = width - staple_width * 2
     for(let i = 0; i < months.length; i++){
         let w = width / (months.length + 1)
-        noStroke()
         staples(months[i].incomes, months[i].expenses, months[i].net, months[i].name, w * (i + 1), maxMonth)
         var l = ((width - staple_width * 2) / months.length + 1) / months[i].flow.length
+        marker(lastX - (width - staple_width * 3), marker_height)
         for(let j = 0; j < months[i].flow.length; j++){
             graph(lastX - (width - staple_width * 3), lastY, months[i].flow[j], l)
             lastY += months[i].flow[j]
             lastX += l
         }
     }
+    marker(lastX - (width - staple_width * 3), marker_height)
     fill(getColor(lastY))
-    text(lastY.toFixed(2), lastX - staple_width * 4, lastY - size)
     noStroke()
+    text(lastY.toFixed(2), width - 50, - 10 - size)
     noLoop()
 }
 
@@ -61,8 +63,13 @@ function getColor(n){
     else return color(255, 0, 0)
 }
 
+function marker(x, h){
+    line(x, - h - size, x, h - size)
+}
+
 function graph(x, y, net, l){
     push()
+    marker(x, marker_height / 3)
     translate(0, -size)
     stroke(getColor(net))
     line(x, map(y, -maxTransfer, maxTransfer, size, -size), x + l, map(y + net, -maxTransfer, maxTransfer,size, -size))
@@ -71,6 +78,7 @@ function graph(x, y, net, l){
 
 function staples(inc, out, net, name, x, max){
     push()
+    noStroke()
     translate(0, size)
     fill(0, 255, 150)
     rect(staple_width / 2 + x, 0, staple_width, -map(inc, 0, max, 0, size))
