@@ -1,0 +1,21 @@
+:root {
+    --ocean-floor: #9cdcfa;
+    --ocean-hole: #003f58;
+    --ocean-hole-edge: #acddff;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 96vh;
+    width: 99vw;
+    background-color: var(--ocean-floor);
+}
+
+.hole {
+    width: 70vh;
+    height: 70vh;
+    border-radius: 50%;
+    background-image: radial-gradient(at top, var(--ocean-floor), var(--ocean-hole));
+}
