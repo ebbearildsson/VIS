@@ -27,16 +27,16 @@ function draw(){
         if(keyIsDown(83)) c.y += step
         if(keyIsDown(87)) c.y -= step
     }
-    background(0)
-    a += 0.001
 
+    background(0)
+    a += 0.005
     push()
     fill(5)
     noStroke()
     s.forEach(sphere => ellipse(sphere.x, sphere.y, sphere.z))
     pop()
     edge.forEach(edge => ellipse(edge.x, edge.y, 2))
-    for(let i = 0; i < rays; i++) march(s, layers, c.x, c.y, a + TWO_PI / rays * i)   
+    for(let i = 0; i < rays; i++) march(s, layers, c.x, c.y, a + TWO_PI / rays * i)  
 }
 
 function march(spheres, depth, x, y, angle){
