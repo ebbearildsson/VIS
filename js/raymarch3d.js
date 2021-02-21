@@ -41,12 +41,12 @@ function moveRays(rayN){
 
 function drawScene(){
     scene.forEach(obj => {
-            push();
-            translate(obj.pos.x, obj.pos.y, obj.pos.z);
-            fill(obj.c.x, obj.c.y, obj.c.z);
-            if(obj instanceof Sphere) sphere(obj.r);
-            else if(obj instanceof Box) box(obj.size.x, obj.size.y, obj.size.z);
-            pop();
+        push();
+        translate(obj.pos.x, obj.pos.y, obj.pos.z);
+        fill(obj.c.x, obj.c.y, obj.c.z);
+        if(obj instanceof Sphere) sphere(obj.r);
+        else if(obj instanceof Box) box(obj.size.x, obj.size.y, obj.size.z);
+        pop();
     });
     lights.forEach(light => {
         push();
