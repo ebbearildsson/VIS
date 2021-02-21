@@ -7,6 +7,7 @@ function setup(){
 }
 
 function draw(){
+	background(0, 255, 0);
 	count += 0.1;
-	ellipse(size * cos(count), size * sin(count), size / 10, size / 10);
+	ellipse(size + size * cos(count), size + size * sin(count), size / 10, size / 10);
 }
