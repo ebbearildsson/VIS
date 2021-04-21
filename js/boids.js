@@ -1,12 +1,12 @@
 const size = 10;
-const vision = 1000;
+const vision = 100;
 const amount = 50;
 const speed = 5;
 let ruleC = 0.05;
 let ruleS = 10;
 let ruleA = 0.05;
-let drawV = false;
-let drawS = false;
+let drawV = true;
+let drawS = true;
 let boids = [];
 
 function setup(){
@@ -28,7 +28,7 @@ function calcRuleS(boid){ //Seperation
     let v = createVector();
     let n = 0;
     boids.forEach(other => {
-        let d = dist(boid.pos.x, boid.pos.y, other.pos.x, other.pos.y)
+        let d = dist(boid.pos.x, boid.pos.y, other.pos.x, other.pos.y) / 8
         if(other != boid && d < vision){
             let f = -sq(ruleS) / sq(d); 
             let a = atan2(boid.pos.y - other.pos.y, other.pos.x - boid.pos.x);
@@ -53,7 +53,7 @@ function calcRuleA(boid){ //Alignment
     let v = createVector();
     let n = 0;
     boids.forEach(other => {
-        let d = dist(boid.pos.x, boid.pos.y, other.pos.x, other.pos.y)
+        let d = dist(boid.pos.x, boid.pos.y, other.pos.x, other.pos.y) / 8
         if(other != boid && d < vision){
             v.add(other.vel);
             n++;
@@ -77,7 +77,7 @@ function calcRuleC(boid){ //Cohesion
     let v = createVector();
     let n = 0;
     boids.forEach(other => {
-        let d = dist(boid.pos.x, boid.pos.y, other.pos.x, other.pos.y)
+        let d = dist(boid.pos.x, boid.pos.y, other.pos.x, other.pos.y) / 8
         if(other != boid && d < vision){
             v.add(other.pos);
             n++;
